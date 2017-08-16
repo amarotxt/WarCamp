@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class Warrior : MonoBehaviour {
 	
-	float timeBetweenAttacks = 2f;
+	public float timeBetweenAttacks = 2f;
 	float timer;
 	float distanceToPlayer;
-	Enimy warrior;
-	EnimyHealth enimyHealth;
+	CommandsEnemies warrior;
 	GameObject player;
 	// Use this for initialization
 	void Start () {
-		enimyHealth = GetComponent<EnimyHealth> ();
+		
 		player = GameObject.FindGameObjectWithTag ("Player");
-		warrior =new WarriorCommands(10,enimyHealth,10,7,5,5,player.GetComponent<Player>());
+		warrior =new WarriorCommands(10,10,7,5,5,player.GetComponent<Player>());
 	}
 
 	void Update () {
@@ -27,12 +26,16 @@ public class Warrior : MonoBehaviour {
 			timer = 0f;
 		}
 		warrior.Move (gameObject.transform, distanceToPlayer);
-	}
-	void OnTriggerEnter(Collider col){
 
+	}
+
+	void OnTriggerEnter(Collider col){
 		if (col.gameObject.CompareTag ("arma")) {
-			warrior.TakeDamege (player.GetComponent<Player>().damege);
+			warrior.TakeDamege (player.GetComponent<Player> ().damege);
 			Destroy (col.gameObject);
+			if (warrior.health <= 0) {
+				Destroy (gameObject);
+			} 
 		}
 	}
 }

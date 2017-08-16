@@ -24,7 +24,8 @@ GameObject:
   - component: {fileID: 23204973449354296}
   - component: {fileID: 54802906228276450}
   - component: {fileID: 114116570533952872}
-  - component: {fileID: 114783401198733678}
+  - component: {fileID: 114622168488851918}
+  - component: {fileID: 114475940661806992}
   m_Layer: 0
   m_Name: Arqueiro
   m_TagString: Untagged
@@ -123,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulets: {fileID: 1629715663695462, guid: c35268728777cdf4289619a639fa0394, type: 2}
---- !u!114 &114783401198733678
+--- !u!114 &114475940661806992
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -131,7 +132,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1083879404355750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72bab87829fc45a429e412d9de96cd58, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ce5a5907561fbf4ca25028e7b37d2c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enimyHealth: 1
+  enemyHealth: 1
+--- !u!114 &114622168488851918
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1083879404355750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce5a5907561fbf4ca25028e7b37d2c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHealth: 1
