@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 	public float health;
@@ -13,7 +12,6 @@ public class Player : MonoBehaviour {
 	float timer;
 	public float timeBetweenAttacks;
 
-	public Slider healthBar;
 
 	GameObject weapon;
 
@@ -23,11 +21,14 @@ public class Player : MonoBehaviour {
 	public int lvl;
 	int changelvl;
 	int points;
-	int totalpoints;
+	public int totalPoints;
 
 	void Start () {
 		lvl = 0;
 		arm = 1;
+		points = 0;
+		totalPoints = 0;
+		changelvl = 100;
 		weapon = (GameObject)Resources.Load("Prefabs/Armas/Arma"+arm, typeof(GameObject));
 		timeBetweenAttacks = 1+(weapon.GetComponent<Weapon> ().timeBetweenAttacksWeapon);
 
@@ -50,22 +51,15 @@ public class Player : MonoBehaviour {
 				timer = 0f;
 			}
 		}
-		Debug.Log (health);
-		healthBar.value = CauculateHealthBar();
 		if (points >= changelvl){
 			lvl += 1;
 			points = 0;
-			changelvl += totalpoints/10;
+			changelvl += totalPoints/10;
 		}
 	}
-
-	public float CauculateHealthBar(){
-		return (health / fullHealth);
-	}
-		
 	public void TakeDamage(float damage){
-		if (health > 0){
-			health -= (Random.Range(damage/2f, damage)-Random.Range(armor/2f, armor));
+		if (health > 0 && damage>=armor){
+			health -= Mathf.Abs(Random.Range(damage/2f, damage)-Random.Range(armor/2f, armor));
 		}
 	}
 
@@ -87,12 +81,19 @@ public class Player : MonoBehaviour {
 		damege += 5;
 	}
 	public void IncreaseAttackSpeed(){
-		if (timeBetweenAttacks > 0.1f){
-		timeBetweenAttacks = timeBetweenAttacks - 0.1f;
+		if (timeBetweenAttacks > 0.5f ){
+			timeBetweenAttacks -= 0.1f;
+		}else if (timeBetweenAttacks < 0.5f && timeBetweenAttacks > 0.4f){
+			timeBetweenAttacks -= 0.05f;
+		}else if (timeBetweenAttacks < 0.4f && timeBetweenAttacks > 0.3f){
+			timeBetweenAttacks -= 0.01f;
+		}else if (timeBetweenAttacks < 0.3f && timeBetweenAttacks > 0.1f){
+			timeBetweenAttacks -= 0.005f;
 		}
+
 	}
 	public void IncreasePoints(int points){
 		this.points += points;
-		totalpoints += points;
+		totalPoints += points;
 	}
 }

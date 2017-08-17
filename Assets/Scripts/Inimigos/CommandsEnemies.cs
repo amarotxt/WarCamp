@@ -19,7 +19,7 @@ public abstract class CommandsEnemies{
 
 	public virtual void TakeDamege(float damage){
 		if (damege>armor) {
-			health = health -(Random.Range(damage/2f, damage)-Random.Range(armor/2f, armor));		
+			health -= Mathf.Abs(Random.Range(damage/2f, damage)-Random.Range(armor/2f, armor));		
 		}
 	}
 
