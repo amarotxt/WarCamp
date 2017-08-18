@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Warrior : MonoBehaviour {
+public class Assassino : MonoBehaviour {
 	int points;
 	public float speedMoves;
 	public float damege;
@@ -13,7 +13,7 @@ public class Warrior : MonoBehaviour {
 	public float timeBetweenAttacks;
 	float timer;
 	float distanceToPlayer;
-	CommandsEnemies warrior;
+	CommandsEnemies assassin;
 	GameObject player;
 	Player playerstatus;
 	GameObject drop;
@@ -25,9 +25,9 @@ public class Warrior : MonoBehaviour {
 		drop = (GameObject)Resources.Load ("Prefabs/Drops/DropLife", typeof(GameObject));
 		playerstatus = player.GetComponent<Player> ();
 		// speedMoves,health, damege, range, armor, player;
-		warrior =new WarriorCommands(speedMoves,health+(playerstatus.fullHealth*0.1f),damege+(playerstatus.damege*0.1f),range,armor+(playerstatus.armor*0.1f),player.GetComponent<Player>());
+		assassin =new AssassinoCommands(speedMoves,health+(playerstatus.fullHealth*0.1f),damege+(playerstatus.damege*0.1f),range,armor+(playerstatus.armor*0.1f),player.GetComponent<Player>());
 		healthBar = GetComponent<ControllerEnemyHealthBar>();
-		healthBar.ChangeHealthvalue (warrior.fullhealth, warrior.health);
+		healthBar.ChangeHealthvalue (assassin.fullhealth, assassin.health);
 		points = 10+playerstatus.lvl;
 	}
 
@@ -37,20 +37,20 @@ public class Warrior : MonoBehaviour {
 
 		// If the timer exceeds the time between attacks, the player is in range and this enemy is alive...
 		if(timer >= timeBetweenAttacks){
-			warrior.Attack (distanceToPlayer);
+			assassin.Attack (distanceToPlayer);
 			timer = 0f;
 		}
-		warrior.Move (gameObject.transform, distanceToPlayer);
+		assassin.Move (gameObject.transform, distanceToPlayer);
 
 	}
 
 	void OnTriggerEnter(Collider col){
 		if (col.gameObject.CompareTag ("arma")) {
 			
-			warrior.TakeDamege (player.GetComponent<Player> ().damege, transform);
+			assassin.TakeDamege (player.GetComponent<Player> ().damege, transform);
 			Destroy (col.gameObject);
-			healthBar.ChangeHealthvalue (warrior.fullhealth, warrior.health);
-			if (warrior.health <= 0) {
+			healthBar.ChangeHealthvalue (assassin.fullhealth, assassin.health);
+			if (assassin.health <= 0) {
 				player.GetComponent<Player>().IncreasePoints(points);
 				if (Random.Range(0,100) < 10)
 					Instantiate (drop, gameObject.transform.position, Quaternion.identity);

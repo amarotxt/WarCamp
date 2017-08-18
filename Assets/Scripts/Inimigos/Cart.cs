@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Warrior : MonoBehaviour {
+public class Cart : MonoBehaviour {
 	int points;
 	public float speedMoves;
 	public float damege;
@@ -38,6 +38,7 @@ public class Warrior : MonoBehaviour {
 		// If the timer exceeds the time between attacks, the player is in range and this enemy is alive...
 		if(timer >= timeBetweenAttacks){
 			warrior.Attack (distanceToPlayer);
+			Destroy (gameObject);
 			timer = 0f;
 		}
 		warrior.Move (gameObject.transform, distanceToPlayer);
@@ -46,7 +47,7 @@ public class Warrior : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col){
 		if (col.gameObject.CompareTag ("arma")) {
-			
+
 			warrior.TakeDamege (player.GetComponent<Player> ().damege, transform);
 			Destroy (col.gameObject);
 			healthBar.ChangeHealthvalue (warrior.fullhealth, warrior.health);

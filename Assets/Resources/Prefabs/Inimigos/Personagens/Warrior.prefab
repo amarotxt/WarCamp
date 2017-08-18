@@ -24,8 +24,7 @@ GameObject:
   - component: {fileID: 23474527154387884}
   - component: {fileID: 114133188240809718}
   - component: {fileID: 54075027152797224}
-  - component: {fileID: 114221547499415138}
-  - component: {fileID: 114466740436225256}
+  - component: {fileID: 114997009364410146}
   m_Layer: 0
   m_Name: Warrior
   m_TagString: Untagged
@@ -120,10 +119,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1746425640166136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b2035f16bdf0264a97552c147ddd48c, type: 3}
+  m_Script: {fileID: 11500000, guid: 40b8a1a131cbc40408fe76d8a2df5638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114221547499415138
+  speedMoves: 15
+  damege: 10
+  range: 5
+  armor: 10
+  health: 25
+  timeBetweenAttacks: 1.5
+--- !u!114 &114997009364410146
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -131,19 +136,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1746425640166136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72bab87829fc45a429e412d9de96cd58, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a51a9d8b6701234a936b6552179523e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enimyHealth: 0
---- !u!114 &114466740436225256
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1746425640166136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ce5a5907561fbf4ca25028e7b37d2c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyHealth: 1

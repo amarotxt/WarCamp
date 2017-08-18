@@ -24,8 +24,7 @@ GameObject:
   - component: {fileID: 23204973449354296}
   - component: {fileID: 54802906228276450}
   - component: {fileID: 114116570533952872}
-  - component: {fileID: 114622168488851918}
-  - component: {fileID: 114475940661806992}
+  - component: {fileID: 114252040428038104}
   m_Layer: 0
   m_Name: Arqueiro
   m_TagString: Untagged
@@ -123,8 +122,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 382a41ef6e2adb943b495d66aff5ac58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range: 0
+  speedMoves: 8
+  damege: 20
+  armor: 5
+  health: 15
   bulets: {fileID: 1629715663695462, guid: c35268728777cdf4289619a639fa0394, type: 2}
---- !u!114 &114475940661806992
+--- !u!114 &114252040428038104
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -132,19 +136,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1083879404355750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ce5a5907561fbf4ca25028e7b37d2c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a51a9d8b6701234a936b6552179523e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 1
---- !u!114 &114622168488851918
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1083879404355750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ce5a5907561fbf4ca25028e7b37d2c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyHealth: 1

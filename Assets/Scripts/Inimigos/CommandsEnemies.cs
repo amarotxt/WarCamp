@@ -9,6 +9,7 @@ public abstract class CommandsEnemies{
 	protected float armor;
 	protected Player player;
 	public float health;
+	public float fullhealth;
 
 	public virtual void Move(Transform enemy, float range){
 		if (this.range < range){
@@ -17,10 +18,16 @@ public abstract class CommandsEnemies{
 	}
 	public virtual void Attack(float distance){}
 
-	public virtual void TakeDamege(float damage){
-		if (damege>armor) {
-			health -= Mathf.Abs(Random.Range(damage/2f, damage)-Random.Range(armor/2f, armor));		
+	public virtual void TakeDamege(float damage, Transform location){
+		float calculateDamage = Random.Range (damage / 2f, damage) - Random.Range (armor / 2f, armor);
+		if (calculateDamage > 0) {
+			ControllerDamagePopup.CreatingDamagePopupText (calculateDamage.ToString ("0.00"), location);
+			health -= calculateDamage;
+		} else {
+			ControllerDamagePopup.CreatingDamagePopupText ("00.00", location);
+
 		}
+
 	}
 
 }
@@ -29,6 +36,7 @@ public class WarriorCommands: CommandsEnemies{
 	public WarriorCommands(float speedMoves,float health, float damage, float range, float armor, Player player){
 		this.speedMoves = speedMoves;
 		this.health = health;
+		fullhealth = health;
 		this.damege = damage;
 		this.range = range;
 		this.armor = armor;
@@ -45,6 +53,7 @@ public class ArcherCommands: CommandsEnemies{
 	public ArcherCommands(float speedMoves, float health, float damage, float range, float armor, Player player){
 		this.speedMoves = speedMoves;
 		this.health = health;
+		fullhealth = health;
 		this.damege = damage;
 		this.range = range;
 		this.armor = armor;
@@ -73,5 +82,46 @@ public class BuletsCommands: CommandsEnemies{
 	}	
 	public override void Attack(float distance){
 		this.player.TakeDamage (damege);
+	}
+}
+public class AssassinoCommands: CommandsEnemies{
+	bool up = true;
+	bool down = false;
+	public AssassinoCommands(float speedMoves, float health, float damage, float range, float armor, Player player){
+		this.speedMoves = speedMoves;
+		this.health = health;
+		fullhealth = health;
+		this.damege = damage;
+		this.range = range;
+		this.armor = armor;
+		this.player = player;
+	}
+
+	public override void Move(Transform enemy, float range){
+		if (this.range < range){
+			Vector3 goUp = new Vector3 (-1,0,2f);
+			Vector3 goDown = new Vector3 (-1,0,-2f);
+
+			if (enemy.transform.position.z > 24 ){
+				up = false;
+				down = true;
+			}if (enemy.transform.position.z < -24) {
+				up = true;
+				down = false;
+			}
+
+			if (up && !down){
+				enemy.transform.Translate (speedMoves * Time.deltaTime * goUp);
+			}
+			if (!up && down){
+				enemy.transform.Translate (speedMoves * Time.deltaTime * goDown);
+			}
+		}
+
+	}	
+	public override void Attack(float distance){
+		if (this.range > distance) {
+			this.player.TakeDamage (damege);
+		}	
 	}
 }

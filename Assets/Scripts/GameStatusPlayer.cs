@@ -18,6 +18,7 @@ public class GameStatusPlayer : MonoBehaviour {
 	GameObject playSatusPainel;
 
 	public Slider healthBar;
+	public Slider lvlBar;
 
 	// Use this for initialization
 	void Start () {
@@ -41,11 +42,10 @@ public class GameStatusPlayer : MonoBehaviour {
 			extraPointsText.text = extraPoints.ToString();
 			lvlUp = player.lvl;
 			Time.timeScale = 0;
-
-
 		}
 	
 		healthBar.value = CauculateHealthBar();
+		lvlBar.value = CauculateLvlBar ();
 
 	}
 	public void IncreaseHealth(){
@@ -58,7 +58,6 @@ public class GameStatusPlayer : MonoBehaviour {
 		}
 	}
 	public void IncreaseArmor(){
-		Debug.Log ("teste");
 		if (extraPoints != 0) {
 			player.IncreaseArmor ();
 			armorText.text = player.armor.ToString();
@@ -88,6 +87,9 @@ public class GameStatusPlayer : MonoBehaviour {
 	}
 	public float CauculateHealthBar(){
 		return (player.health / player.fullHealth);
+	}
+	public float CauculateLvlBar(){
+		return ((float)player.points / (float)player.changelvl);
 	}
 	public void ContinueGame(){
 		Time.timeScale = 1;

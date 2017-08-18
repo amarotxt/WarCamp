@@ -12,15 +12,13 @@ public class Player : MonoBehaviour {
 	float timer;
 	public float timeBetweenAttacks;
 
-
 	GameObject weapon;
-
 	Vector3 mausePosition;
 	Vector3 lookMausePosition;
 
 	public int lvl;
-	int changelvl;
-	int points;
+	public int changelvl;
+	public int points;
 	public int totalPoints;
 
 	void Start () {
@@ -58,8 +56,12 @@ public class Player : MonoBehaviour {
 		}
 	}
 	public void TakeDamage(float damage){
-		if (health > 0 && damage>=armor){
-			health -= Mathf.Abs(Random.Range(damage/2f, damage)-Random.Range(armor/2f, armor));
+		if (health > 0){
+			float calculateDamage = Random.Range (damage / 2f, damage) - Random.Range (armor / 2f, armor);
+			ControllerDamagePopup.CreatingDamagePopupText (calculateDamage.ToString ("00.00"), transform);
+			if (calculateDamage > 0) {
+				health -= calculateDamage;
+			} 
 		}
 	}
 
