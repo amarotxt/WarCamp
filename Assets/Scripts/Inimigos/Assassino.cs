@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Assassino : MonoBehaviour {
-	int points;
+	public int points;
 	public float speedMoves;
 	public float damege;
 	public float range;
@@ -25,10 +25,10 @@ public class Assassino : MonoBehaviour {
 		drop = (GameObject)Resources.Load ("Prefabs/Drops/DropLife", typeof(GameObject));
 		playerstatus = player.GetComponent<Player> ();
 		// speedMoves,health, damege, range, armor, player;
-		assassin =new AssassinoCommands(speedMoves,health+(playerstatus.fullHealth*0.1f),damege+(playerstatus.damege*0.1f),range,armor+(playerstatus.armor*0.1f),player.GetComponent<Player>());
+		assassin =new AssassinoCommands(speedMoves,health+(playerstatus.fullHealth*0.1f),damege+(playerstatus.damege*0.5f),range,armor+(playerstatus.armor*0.1f),player.GetComponent<Player>());
 		healthBar = GetComponent<ControllerEnemyHealthBar>();
 		healthBar.ChangeHealthvalue (assassin.fullhealth, assassin.health);
-		points = 10+playerstatus.lvl;
+		points += playerstatus.lvl;
 	}
 
 	void FixedUpdate (	) {

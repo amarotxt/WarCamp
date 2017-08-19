@@ -19,6 +19,7 @@ public class ControllerDamagePopup : MonoBehaviour {
 	public static void CreatingDamagePopupText (string text, Transform location) {
 		DamagePopup instance = Instantiate (damagePopup);
 		Vector2 positionDamagePopup = Camera.main.WorldToScreenPoint (location.position);
+		positionDamagePopup.x += 25;
 		instance.transform.SetParent (canvasDamage.transform, false);
 		instance.transform.position = positionDamagePopup;
 		instance.SetText (text);

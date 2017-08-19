@@ -764,7 +764,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 1, y: 1}
-  m_SizeDelta: {x: 514, y: 320.5}
+  m_SizeDelta: {x: 515, y: 320.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &383997890
 GameObject:
@@ -1525,6 +1525,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0d6eff08b34eeb47a8a982c92a85bbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  warrior: {fileID: 1746425640166136, guid: afd8662920a353b439f3b4223a04d8ee, type: 2}
+  tank: {fileID: 1746425640166136, guid: aac98b17186ff014aa68fa76f5a86f27, type: 2}
+  assassin: {fileID: 1746425640166136, guid: a4fc3352d9f47984da7cdcbf4c2fa204, type: 2}
+  archer: {fileID: 1083879404355750, guid: 01cd579da5a20724e98d59d0b024d903, type: 2}
+  cart: {fileID: 1746425640166136, guid: 5f30ec6e955845f46bc5189a37ff88d3, type: 2}
 --- !u!1 &961936861
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,7 +1663,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1112931313}
   m_HandleRect: {fileID: 0}

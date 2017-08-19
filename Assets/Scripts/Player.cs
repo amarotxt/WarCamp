@@ -57,11 +57,13 @@ public class Player : MonoBehaviour {
 	}
 	public void TakeDamage(float damage){
 		if (health > 0){
-			float calculateDamage = Random.Range (damage / 2f, damage) - Random.Range (armor / 2f, armor);
-			ControllerDamagePopup.CreatingDamagePopupText (calculateDamage.ToString ("00.00"), transform);
+			float calculateDamage = damage - Random.Range (armor / 2, armor);
 			if (calculateDamage > 0) {
+				ControllerDamagePopup.CreatingDamagePopupText (calculateDamage.ToString ("00.00"), transform);
 				health -= calculateDamage;
-			} 
+			}else 
+				ControllerDamagePopup.CreatingDamagePopupText ("00.00", transform);
+
 		}
 	}
 
@@ -73,14 +75,14 @@ public class Player : MonoBehaviour {
 	}
 
 	public void IncreaseHealth(){
-		health += 10;
-		fullHealth += 10;
+		health +=  (int)Mathf.Log(lvl)+1;
+		fullHealth += (int)Mathf.Log(lvl)+1;
 	}
 	public void IncreaseArmor(){
-		armor += 5;
+		armor +=  (int)Mathf.Log(lvl)+1;
 		}
 	public void IncreaseStrength(){
-		damege += 5;
+		damege +=  (int)Mathf.Log(lvl)+1;
 	}
 	public void IncreaseAttackSpeed(){
 		if (timeBetweenAttacks > 0.5f ){

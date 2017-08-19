@@ -20,6 +20,7 @@ public class ControllerEnemyHealthBar : MonoBehaviour {
 		healthEnemyBar = (GameObject)Resources.Load("Prefabs/Inimigos/CanvasUtilites/HealthBarParent",typeof(GameObject));
 		healthBarInstance = Instantiate (healthEnemyBar, transform.position, Quaternion.identity);
 		healthBarInstance.transform.SetParent (canvasHealthBar.transform, false);
+		healthBarInstance.transform.position = new Vector3(100,0,0);
 		healthSlider = healthBarInstance.transform.GetComponentInChildren<Slider> ();
 		healthValues = 0;
 	}
@@ -28,8 +29,9 @@ public class ControllerEnemyHealthBar : MonoBehaviour {
 	void Update () {
 		positionHealthBar = Camera.main.WorldToScreenPoint(transform.position);
 		positionHealthBar.y -= 15;
+		if(healthBarInstance != null){
 		healthBarInstance.transform.position = positionHealthBar;
-
+		}
 	}
 	public void ChangeHealthvalue(float fullhealth, float health){
 		if (healthSlider != null) {

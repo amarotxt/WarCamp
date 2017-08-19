@@ -13,7 +13,7 @@ public class Cart : MonoBehaviour {
 	public float timeBetweenAttacks;
 	float timer;
 	float distanceToPlayer;
-	CommandsEnemies warrior;
+	CommandsEnemies cart;
 	GameObject player;
 	Player playerstatus;
 	GameObject drop;
@@ -25,33 +25,33 @@ public class Cart : MonoBehaviour {
 		drop = (GameObject)Resources.Load ("Prefabs/Drops/DropLife", typeof(GameObject));
 		playerstatus = player.GetComponent<Player> ();
 		// speedMoves,health, damege, range, armor, player;
-		warrior =new WarriorCommands(speedMoves,health+(playerstatus.fullHealth*0.1f),damege+(playerstatus.damege*0.1f),range,armor+(playerstatus.armor*0.1f),player.GetComponent<Player>());
+		cart =new WarriorCommands(speedMoves,health+(playerstatus.fullHealth*0.1f),damege+(playerstatus.damege*0.1f),range,armor+(playerstatus.armor*0.1f),player.GetComponent<Player>());
 		healthBar = GetComponent<ControllerEnemyHealthBar>();
-		healthBar.ChangeHealthvalue (warrior.fullhealth, warrior.health);
-		points = 10+playerstatus.lvl;
+		healthBar.ChangeHealthvalue (cart.fullhealth, cart.health);
+		points = 15+playerstatus.lvl;
 	}
 
 	void FixedUpdate (	) {
 		timer += Time.deltaTime;
 		distanceToPlayer = Vector3.Distance (new Vector3(player.transform.position.x,0),new Vector3( gameObject.transform.position.x,0));
 
-		// If the timer exceeds the time between attacks, the player is in range and this enemy is alive...
-		if(timer >= timeBetweenAttacks){
-			warrior.Attack (distanceToPlayer);
+		cart.Attack (distanceToPlayer);
+
+		if (range >= distanceToPlayer){
 			Destroy (gameObject);
-			timer = 0f;
+			cart.health = 0;
+			healthBar.ChangeHealthvalue (cart.fullhealth, cart.health);
 		}
-		warrior.Move (gameObject.transform, distanceToPlayer);
+		cart.Move (gameObject.transform, distanceToPlayer);
 
 	}
 
 	void OnTriggerEnter(Collider col){
 		if (col.gameObject.CompareTag ("arma")) {
-
-			warrior.TakeDamege (player.GetComponent<Player> ().damege, transform);
+			cart.TakeDamege (player.GetComponent<Player> ().damege, transform);
 			Destroy (col.gameObject);
-			healthBar.ChangeHealthvalue (warrior.fullhealth, warrior.health);
-			if (warrior.health <= 0) {
+			healthBar.ChangeHealthvalue (cart.fullhealth, cart.health);
+			if (cart.health <= 0) {
 				player.GetComponent<Player>().IncreasePoints(points);
 				if (Random.Range(0,100) < 10)
 					Instantiate (drop, gameObject.transform.position, Quaternion.identity);

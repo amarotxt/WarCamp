@@ -121,3 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93d615a5cc2711241969ecc7bc18350f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedMoves: 40
+  damege: 20
+  armor: 0
+  health: 0

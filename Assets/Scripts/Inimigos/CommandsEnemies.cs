@@ -19,7 +19,7 @@ public abstract class CommandsEnemies{
 	public virtual void Attack(float distance){}
 
 	public virtual void TakeDamege(float damage, Transform location){
-		float calculateDamage = Random.Range (damage / 2f, damage) - Random.Range (armor / 2f, armor);
+		float calculateDamage = damage - Random.Range (armor / 2f, armor);
 		if (calculateDamage > 0) {
 			ControllerDamagePopup.CreatingDamagePopupText (calculateDamage.ToString ("0.00"), location);
 			health -= calculateDamage;
@@ -43,7 +43,7 @@ public class WarriorCommands: CommandsEnemies{
 		this.player = player;
 	}
 	public override void Attack(float distance){
-		if (this.range > distance) {
+		if (this.range >= distance) {
 			this.player.TakeDamage (damege);
 		}
 	}
@@ -120,7 +120,7 @@ public class AssassinoCommands: CommandsEnemies{
 
 	}	
 	public override void Attack(float distance){
-		if (this.range > distance) {
+		if (this.range >= distance) {
 			this.player.TakeDamage (damege);
 		}	
 	}
