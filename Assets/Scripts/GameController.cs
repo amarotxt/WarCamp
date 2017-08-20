@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour {
 		assassinInvoker.minRamdonTimerEnemy = 5.5f;
 
 		tankInvoker = gameObject.AddComponent<InvokerEnemy> ();
-		tankInvoker.timeEnemy = 9;
+		tankInvoker.timeEnemy = 8;
 		tankInvoker.minRamdonTimerEnemy = 7.5f;
 
 		cartInvoker = gameObject.AddComponent<InvokerEnemy> ();

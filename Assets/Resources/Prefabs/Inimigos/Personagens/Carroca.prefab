@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMoves: 20
-  damege: 100
+  damage: 100
   range: 6.9
   armor: 0
   health: 5

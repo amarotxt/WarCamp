@@ -3471,7 +3471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 20
   fullHealth: 0
-  damege: 20
+  damage: 20
   armor: 5
   arm: 0
   timeBetweenAttacks: 1

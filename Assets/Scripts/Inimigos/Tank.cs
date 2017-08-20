@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cart : MonoBehaviour {
-	int points;
+public class Tank : MonoBehaviour {
+	public int points;
 	public float speedMoves;
 	public float damage;
 	public float range;
@@ -13,7 +13,7 @@ public class Cart : MonoBehaviour {
 	public float timeBetweenAttacks;
 	float timer;
 	float distanceToPlayer;
-	CommandsEnemies cart;
+	CommandsEnemies warrior;
 	GameObject player;
 	Player playerstatus;
 	GameObject drop;
@@ -25,38 +25,37 @@ public class Cart : MonoBehaviour {
 		drop = (GameObject)Resources.Load ("Prefabs/Drops/DropLife", typeof(GameObject));
 		playerstatus = player.GetComponent<Player> ();
 		// speedMoves,health, damege, range, armor, player;
-		cart =new WarriorCommands(speedMoves,
-			health+(playerstatus.fullHealth*0.1f),
-			damage+(Random.Range(playerstatus.armor*0.1f, playerstatus.armor*0.5f)+((int)Mathf.Log(playerstatus.lvl+1)+1)),
+		warrior =new WarriorCommands(speedMoves,
+			health+(playerstatus.fullHealth*0.3f+(int)Mathf.Log(playerstatus.lvl+1)+1),
+			damage+(Random.Range(playerstatus.armor*0.1f, playerstatus.armor*0.35f)+((int)Mathf.Log(playerstatus.lvl+1)+1)),
 			range,
-			armor+(playerstatus.armor*0.1f),
+			armor+Random.Range(playerstatus.damage*0.25f,playerstatus.damage*0.4f)+(int)Mathf.Log(playerstatus.lvl+1)+1,
 			player.GetComponent<Player>());
 		healthBar = GetComponent<ControllerEnemyHealthBar>();
-		healthBar.ChangeHealthvalue (cart.fullhealth, cart.health);
-		points = 15+playerstatus.lvl;
+		healthBar.ChangeHealthvalue (warrior.fullhealth, warrior.health);
+		points += playerstatus.lvl;
 	}
 
 	void FixedUpdate (	) {
 		timer += Time.deltaTime;
 		distanceToPlayer = Vector3.Distance (new Vector3(player.transform.position.x,0),new Vector3( gameObject.transform.position.x,0));
 
-		cart.Attack (distanceToPlayer);
-
-		if (range >= distanceToPlayer){
-			Destroy (gameObject);
-			cart.health = 0;
-			healthBar.ChangeHealthvalue (cart.fullhealth, cart.health);
+		// If the timer exceeds the time between attacks, the player is in range and this enemy is alive...
+		if(timer >= timeBetweenAttacks){
+			warrior.Attack (distanceToPlayer);
+			timer = 0f;
 		}
-		cart.Move (gameObject.transform, distanceToPlayer);
+		warrior.Move (gameObject.transform, distanceToPlayer);
 
 	}
 
 	void OnTriggerEnter(Collider col){
 		if (col.gameObject.CompareTag ("arma")) {
-			cart.TakeDamege (player.GetComponent<Player> ().damage, transform);
+
+			warrior.TakeDamege (player.GetComponent<Player> ().damage, transform);
 			Destroy (col.gameObject);
-			healthBar.ChangeHealthvalue (cart.fullhealth, cart.health);
-			if (cart.health <= 0) {
+			healthBar.ChangeHealthvalue (warrior.fullhealth, warrior.health);
+			if (warrior.health <= 0) {
 				player.GetComponent<Player>().IncreasePoints(points);
 				if (Random.Range(0,100) < 10)
 					Instantiate (drop, gameObject.transform.position, Quaternion.identity);

@@ -8,7 +8,7 @@ public class Bulets : MonoBehaviour {
 	float distanceToPlayer;
 
 	public float speedMoves;
-	public float damege;
+	public float damage;
 	public float armor;
 	public float health;
 
@@ -24,7 +24,13 @@ public class Bulets : MonoBehaviour {
 		playerstatus = player.GetComponent<Player> ();
 
 		// speedMoves,health, damege, range, armor, player;
-		bulets =new BuletsCommands(speedMoves+(int)Mathf.Log(playerstatus.lvl),1,damege+(playerstatus.armor*0.4f),range,0,player.GetComponent<Player>());
+		bulets =new BuletsCommands(
+			speedMoves+(int)Mathf.Log(playerstatus.lvl),
+			1,
+			damage+(Random.Range(playerstatus.armor*0.3f, playerstatus.armor*0.4f)+((int)Mathf.Log(playerstatus.lvl+1)+1)),
+			range,
+			0,
+			player.GetComponent<Player>());
 		randomDirectionBulets = player.transform.position;
 		randomDirectionBulets.z = Random.Range (20f,-20f);
 		gameObject.transform.LookAt (randomDirectionBulets);

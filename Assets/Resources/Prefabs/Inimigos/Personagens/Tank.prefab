@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33024172533143984}
   - component: {fileID: 65818879459769312}
   - component: {fileID: 23474527154387884}
-  - component: {fileID: 114133188240809718}
   - component: {fileID: 54075027152797224}
   - component: {fileID: 114997009364410146}
+  - component: {fileID: 114710410405054120}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -111,7 +111,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114133188240809718
+--- !u!114 &114710410405054120
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -119,15 +119,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1746425640166136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40b8a1a131cbc40408fe76d8a2df5638, type: 3}
+  m_Script: {fileID: 11500000, guid: 4812fdb6d5a03244493ada3c9282773f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   points: 30
   speedMoves: 13
-  damege: 8
+  damage: 10
   range: 5
   armor: 25
-  health: 40
+  health: 50
   timeBetweenAttacks: 2
 --- !u!114 &114997009364410146
 MonoBehaviour:

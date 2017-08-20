@@ -122,6 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMoves: 40
-  damege: 20
+  damage: 20
   armor: 0
   health: 0

@@ -29,7 +29,12 @@ public class Archer : MonoBehaviour {
 		drop = (GameObject)Resources.Load ("Prefabs/Drops/DropLife", typeof(GameObject));
 		playerstatus = player.GetComponent<Player> ();
 		// speedMoves,health, damege, range, armor, player;
-		archer =new ArcherCommands(speedMoves,health+(playerstatus.fullHealth*0.1f),0,range,armor+(playerstatus.damege*0.1f),player.GetComponent<Player>());
+		archer =new ArcherCommands(speedMoves,
+			health+(playerstatus.fullHealth*0.1f),
+			0,
+			range,
+			armor+(playerstatus.damage*0.1f),
+			player.GetComponent<Player>());
 		healthBar = GetComponent<ControllerEnemyHealthBar>();
 		healthBar.ChangeHealthvalue (archer.fullhealth, archer.health);
 		points = 10+playerstatus.lvl;
@@ -50,7 +55,7 @@ public class Archer : MonoBehaviour {
 	void OnTriggerEnter(Collider col){
 
 		if (col.gameObject.CompareTag ("arma")) {
-			archer.TakeDamege (player.GetComponent<Player> ().damege,transform);
+			archer.TakeDamege (player.GetComponent<Player> ().damage,transform);
 			Destroy (col.gameObject);
 			healthBar.ChangeHealthvalue (archer.fullhealth,archer.health);
 

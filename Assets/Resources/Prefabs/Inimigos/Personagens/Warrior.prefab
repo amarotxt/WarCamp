@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 10
   speedMoves: 15
-  damege: 10
+  damage: 15
   range: 5
   armor: 15
   health: 25

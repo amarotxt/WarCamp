@@ -30,7 +30,7 @@ public class GameStatusPlayer : MonoBehaviour {
 	void FixedUpdate(){
 		extraPointsText.text = extraPoints.ToString();
 		healthTotalText.text = player.fullHealth.ToString();
-		damageText.text = player.damege.ToString();
+		damageText.text = player.damage.ToString();
 		armorText.text = player.armor.ToString();
 		attackSpeedText.text = player.timeBetweenAttacks.ToString("00.00");
 		totalPointsText.text = player.totalPoints.ToString();
@@ -68,7 +68,7 @@ public class GameStatusPlayer : MonoBehaviour {
 	public void IncreaseStrength(){
 		if (extraPoints != 0) {
 			player.IncreaseStrength ();
-			damageText.text = player.damege.ToString();
+			damageText.text = player.damage.ToString();
 			extraPoints -= 1;
 			extraPointsText.text = extraPoints.ToString();
 		}

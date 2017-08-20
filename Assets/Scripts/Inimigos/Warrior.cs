@@ -5,7 +5,7 @@ using UnityEngine;
 public class Warrior : MonoBehaviour {
 	public int points;
 	public float speedMoves;
-	public float damege;
+	public float damage;
 	public float range;
 	public float armor;
 	public float health;
@@ -27,21 +27,22 @@ public class Warrior : MonoBehaviour {
 		// speedMoves,health, damege, range, armor, player;
 		warrior =new WarriorCommands(speedMoves,
 			health+(playerstatus.fullHealth*0.1f),
-			damege+(Random.Range(playerstatus.armor*0.2f, playerstatus.armor*0.35f)),
+			damage+Random.Range(playerstatus.armor*0.2f, playerstatus.armor*0.6f)+(int)Mathf.Log(playerstatus.lvl+1)+1,
 			range,
-			armor+Random.Range(playerstatus.damege*0.2f,playerstatus.damege*0.3f ),
+			armor+Random.Range(playerstatus.damage*0.1f,playerstatus.damage*0.2f)+(int)Mathf.Log(playerstatus.lvl+1)+1,
 			player.GetComponent<Player>());
 		healthBar = GetComponent<ControllerEnemyHealthBar>();
 		healthBar.ChangeHealthvalue (warrior.fullhealth, warrior.health);
 		points += playerstatus.lvl;
-	}
 
+		}
 	void FixedUpdate (	) {
 		timer += Time.deltaTime;
 		distanceToPlayer = Vector3.Distance (new Vector3(player.transform.position.x,0),new Vector3( gameObject.transform.position.x,0));
 
 		// If the timer exceeds the time between attacks, the player is in range and this enemy is alive...
 		if(timer >= timeBetweenAttacks){
+			Debug.Log ("3: "+warrior.damage);
 			warrior.Attack (distanceToPlayer);
 			timer = 0f;
 		}
@@ -52,7 +53,7 @@ public class Warrior : MonoBehaviour {
 	void OnTriggerEnter(Collider col){
 		if (col.gameObject.CompareTag ("arma")) {
 			
-			warrior.TakeDamege (player.GetComponent<Player> ().damege, transform);
+			warrior.TakeDamege (player.GetComponent<Player> ().damage, transform);
 			Destroy (col.gameObject);
 			healthBar.ChangeHealthvalue (warrior.fullhealth, warrior.health);
 			if (warrior.health <= 0) {

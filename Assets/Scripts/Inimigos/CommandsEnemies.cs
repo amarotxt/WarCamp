@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class CommandsEnemies{
 	protected float speedMoves;
-	protected float damege;
+	public float damage;
 	protected float range;
 	protected float armor;
 	protected Player player;
@@ -34,17 +34,20 @@ public abstract class CommandsEnemies{
 
 public class WarriorCommands: CommandsEnemies{
 	public WarriorCommands(float speedMoves,float health, float damage, float range, float armor, Player player){
+		Debug.Log ("1: "+damage);
 		this.speedMoves = speedMoves;
 		this.health = health;
 		fullhealth = health;
-		this.damege = damage;
+		this.damage = damage;
 		this.range = range;
 		this.armor = armor;
 		this.player = player;
+		Debug.Log ("2: "+this.damage);
 	}
 	public override void Attack(float distance){
 		if (this.range >= distance) {
-			this.player.TakeDamage (damege);
+			Debug.Log ("4: "+this.damage);
+			this.player.TakeDamage (this.damage);
 		}
 	}
 }
@@ -54,7 +57,7 @@ public class ArcherCommands: CommandsEnemies{
 		this.speedMoves = speedMoves;
 		this.health = health;
 		fullhealth = health;
-		this.damege = damage;
+		this.damage = damage;
 		this.range = range;
 		this.armor = armor;
 		this.player = player;
@@ -65,7 +68,7 @@ public class BuletsCommands: CommandsEnemies{
 	public BuletsCommands(float speedMoves, float health, float damage, float range, float armor, Player player){
 		this.speedMoves = speedMoves;
 		this.health = health;
-		this.damege = damage;
+		this.damage = damage;
 		this.range = range;
 		this.armor = armor;
 		this.player = player;
@@ -81,7 +84,7 @@ public class BuletsCommands: CommandsEnemies{
 		}
 	}	
 	public override void Attack(float distance){
-		this.player.TakeDamage (damege);
+		this.player.TakeDamage (damage);
 	}
 }
 public class AssassinoCommands: CommandsEnemies{
@@ -91,7 +94,7 @@ public class AssassinoCommands: CommandsEnemies{
 		this.speedMoves = speedMoves;
 		this.health = health;
 		fullhealth = health;
-		this.damege = damage;
+		this.damage = damage;
 		this.range = range;
 		this.armor = armor;
 		this.player = player;
@@ -121,7 +124,7 @@ public class AssassinoCommands: CommandsEnemies{
 	}	
 	public override void Attack(float distance){
 		if (this.range >= distance) {
-			this.player.TakeDamage (damege);
+			this.player.TakeDamage (damage);
 		}	
 	}
 }

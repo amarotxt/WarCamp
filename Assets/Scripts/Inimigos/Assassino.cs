@@ -5,7 +5,7 @@ using UnityEngine;
 public class Assassino : MonoBehaviour {
 	public int points;
 	public float speedMoves;
-	public float damege;
+	public float damage;
 	public float range;
 	public float armor;
 	public float health;
@@ -25,7 +25,12 @@ public class Assassino : MonoBehaviour {
 		drop = (GameObject)Resources.Load ("Prefabs/Drops/DropLife", typeof(GameObject));
 		playerstatus = player.GetComponent<Player> ();
 		// speedMoves,health, damege, range, armor, player;
-		assassin =new AssassinoCommands(speedMoves,health+(playerstatus.fullHealth*0.1f),damege+(playerstatus.damege*0.5f),range,armor+(playerstatus.armor*0.1f),player.GetComponent<Player>());
+		assassin =new AssassinoCommands(speedMoves,
+			health+(playerstatus.fullHealth*0.2f),
+			damage+(Random.Range(playerstatus.armor*0.3f, playerstatus.armor*0.5f)+((int)Mathf.Log(playerstatus.lvl+1)+1)),
+			range,
+			armor+(playerstatus.armor*0.1f),
+			player.GetComponent<Player>());
 		healthBar = GetComponent<ControllerEnemyHealthBar>();
 		healthBar.ChangeHealthvalue (assassin.fullhealth, assassin.health);
 		points += playerstatus.lvl;
@@ -47,7 +52,7 @@ public class Assassino : MonoBehaviour {
 	void OnTriggerEnter(Collider col){
 		if (col.gameObject.CompareTag ("arma")) {
 			
-			assassin.TakeDamege (player.GetComponent<Player> ().damege, transform);
+			assassin.TakeDamege (player.GetComponent<Player> ().damage, transform);
 			Destroy (col.gameObject);
 			healthBar.ChangeHealthvalue (assassin.fullhealth, assassin.health);
 			if (assassin.health <= 0) {

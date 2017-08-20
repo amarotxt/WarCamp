@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
 	public float health;
 	public float fullHealth;
 
-	public float damege;
+	public float damage;
 	public float armor;
 	public int arm;
 	float timer;
@@ -31,7 +31,7 @@ public class Player : MonoBehaviour {
 		weapon = (GameObject)Resources.Load("Prefabs/Armas/Arma"+arm, typeof(GameObject));
 		timeBetweenAttacks += (weapon.GetComponent<Weapon> ().timeBetweenAttacksWeapon);
 
-		damege += weapon.GetComponent<Weapon> ().damageWeapon;
+		damage += weapon.GetComponent<Weapon> ().damageWeapon;
 		health += (weapon.GetComponent<Weapon> ().healthWeapon);
 		fullHealth = health;
 		armor += +(weapon.GetComponent<Weapon> ().armorWeapon);
@@ -67,13 +67,13 @@ public class Player : MonoBehaviour {
 	}
 	public void TakeDamage(float damage){
 		if (health > 0) {
+			Debug.Log ("5: "+damage);
 			float calculateDamage = damage - Random.Range (armor / 2, armor);
 			if (calculateDamage > 0) {
 				ControllerDamagePopup.CreatingDamagePopupText (calculateDamage.ToString ("00.00"), transform);
 				health -= calculateDamage;
 			} else
 				ControllerDamagePopup.CreatingDamagePopupText ("00.00", transform);
-
 		} 
 	}
 
@@ -92,8 +92,9 @@ public class Player : MonoBehaviour {
 		armor +=  (int)Mathf.Log(lvl)+1;
 		}
 	public void IncreaseStrength(){
-		damege +=  (int)Mathf.Log(lvl)+1;
+		damage +=  (int)Mathf.Log(lvl)+1;
 	}
+
 	public void IncreaseAttackSpeed(){
 		if (timeBetweenAttacks > 0.5f ){
 			timeBetweenAttacks -= 0.1f;
