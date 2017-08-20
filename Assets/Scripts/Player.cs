@@ -85,8 +85,8 @@ public class Player : MonoBehaviour {
 	}
 
 	public void IncreaseHealth(){
-		health +=  (int)Mathf.Log(lvl)+1;
-		fullHealth += (int)Mathf.Log(lvl)+1;
+		health +=  (int)Mathf.Log(lvl)+5;
+		fullHealth += (int)Mathf.Log(lvl)+5;
 	}
 	public void IncreaseArmor(){
 		armor +=  (int)Mathf.Log(lvl)+1;
