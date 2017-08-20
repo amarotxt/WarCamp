@@ -34,7 +34,6 @@ public abstract class CommandsEnemies{
 
 public class WarriorCommands: CommandsEnemies{
 	public WarriorCommands(float speedMoves,float health, float damage, float range, float armor, Player player){
-		Debug.Log ("1: "+damage);
 		this.speedMoves = speedMoves;
 		this.health = health;
 		fullhealth = health;
@@ -42,11 +41,9 @@ public class WarriorCommands: CommandsEnemies{
 		this.range = range;
 		this.armor = armor;
 		this.player = player;
-		Debug.Log ("2: "+this.damage);
-	}
+		}
 	public override void Attack(float distance){
 		if (this.range >= distance) {
-			Debug.Log ("4: "+this.damage);
 			this.player.TakeDamage (this.damage);
 		}
 	}

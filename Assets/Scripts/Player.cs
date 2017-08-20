@@ -67,7 +67,6 @@ public class Player : MonoBehaviour {
 	}
 	public void TakeDamage(float damage){
 		if (health > 0) {
-			Debug.Log ("5: "+damage);
 			float calculateDamage = damage - Random.Range (armor / 2, armor);
 			if (calculateDamage > 0) {
 				ControllerDamagePopup.CreatingDamagePopupText (calculateDamage.ToString ("00.00"), transform);

@@ -42,7 +42,6 @@ public class Warrior : MonoBehaviour {
 
 		// If the timer exceeds the time between attacks, the player is in range and this enemy is alive...
 		if(timer >= timeBetweenAttacks){
-			Debug.Log ("3: "+warrior.damage);
 			warrior.Attack (distanceToPlayer);
 			timer = 0f;
 		}
