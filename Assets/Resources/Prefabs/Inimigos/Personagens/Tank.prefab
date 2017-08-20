@@ -126,8 +126,8 @@ MonoBehaviour:
   speedMoves: 13
   damege: 8
   range: 5
-  armor: 30
-  health: 50
+  armor: 25
+  health: 40
   timeBetweenAttacks: 2
 --- !u!114 &114997009364410146
 MonoBehaviour:

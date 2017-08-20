@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 	public float health;
@@ -28,17 +29,18 @@ public class Player : MonoBehaviour {
 		totalPoints = 0;
 		changelvl = 100;
 		weapon = (GameObject)Resources.Load("Prefabs/Armas/Arma"+arm, typeof(GameObject));
-		timeBetweenAttacks = 1+(weapon.GetComponent<Weapon> ().timeBetweenAttacksWeapon);
+		timeBetweenAttacks += (weapon.GetComponent<Weapon> ().timeBetweenAttacksWeapon);
 
-		damege = 20 + weapon.GetComponent<Weapon> ().damageWeapon;
-		health = 15+(weapon.GetComponent<Weapon> ().healthWeapon);
+		damege += weapon.GetComponent<Weapon> ().damageWeapon;
+		health += (weapon.GetComponent<Weapon> ().healthWeapon);
 		fullHealth = health;
-		armor = 1+(weapon.GetComponent<Weapon> ().armorWeapon);
+		armor += +(weapon.GetComponent<Weapon> ().armorWeapon);
 	
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+		
 		timer += Time.deltaTime;
 		lookMausePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 		lookMausePosition.y = gameObject.transform.position.y;
@@ -54,17 +56,25 @@ public class Player : MonoBehaviour {
 			points = 0;
 			changelvl += totalPoints/10;
 		}
+
+		if(health <= 0) {
+			PlayerPrefs.SetInt ("pontuacao",totalPoints);  
+			if (totalPoints > PlayerPrefs.GetInt("record")){
+				PlayerPrefs.SetInt ("record", totalPoints);
+			}
+			SceneManager.LoadScene (0);
+		}
 	}
 	public void TakeDamage(float damage){
-		if (health > 0){
+		if (health > 0) {
 			float calculateDamage = damage - Random.Range (armor / 2, armor);
 			if (calculateDamage > 0) {
 				ControllerDamagePopup.CreatingDamagePopupText (calculateDamage.ToString ("00.00"), transform);
 				health -= calculateDamage;
-			}else 
+			} else
 				ControllerDamagePopup.CreatingDamagePopupText ("00.00", transform);
 
-		}
+		} 
 	}
 
 	public void Attack(){

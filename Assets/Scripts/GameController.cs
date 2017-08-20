@@ -89,9 +89,6 @@ public class GameController : MonoBehaviour {
 		if (lvlPlayerChange == player.lvl) {
 			lvlPlayerChange += 1;
 			maxEnemies += (int)Mathf.Log(player.lvl);
-			Debug.Log ("Max Enemies :"+maxEnemies);
-			Debug.Log ("log nivel :"+(int)Mathf.Log(player.lvl));
-
 			SetMinTimerInvoker (warriorInvoker);
 			if (player.lvl > 3){
 				SetMinTimerInvoker (archerInvoker);				
