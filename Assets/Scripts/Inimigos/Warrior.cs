@@ -27,7 +27,7 @@ public class Warrior : MonoBehaviour {
 		// speedMoves,health, damege, range, armor, player;
 		warrior =new WarriorCommands(speedMoves,
 			health+(playerstatus.fullHealth*0.1f),
-			damage+Random.Range(playerstatus.armor*0.2f, playerstatus.armor*0.6f)+(int)Mathf.Log(playerstatus.lvl+1)+1,
+			damage+Random.Range(playerstatus.armor*0.2f, playerstatus.armor*0.4f)+(int)Mathf.Log(playerstatus.lvl+1)+1,
 			range,
 			armor+Random.Range(playerstatus.damage*0.1f,playerstatus.damage*0.2f)+(int)Mathf.Log(playerstatus.lvl+1)+1,
 			player.GetComponent<Player>());
