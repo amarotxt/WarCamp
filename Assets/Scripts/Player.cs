@@ -42,7 +42,7 @@ public class Player : MonoBehaviour {
 	void FixedUpdate () {
 		
 		timer += Time.deltaTime;
-		lookMausePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+		lookMausePosition = Camera.main.ScreenToWorldPoint (new Vector3(Input.GetTouch(0).position.x,Input.GetTouch(0).position.y));
 		lookMausePosition.y = gameObject.transform.position.y;
 		gameObject.transform.LookAt (lookMausePosition);
 		if (Input.GetMouseButton(0)){
@@ -77,7 +77,7 @@ public class Player : MonoBehaviour {
 	}
 
 	public void Attack(){
-		mausePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+		mausePosition = Camera.main.ScreenToWorldPoint (new Vector3(Input.GetTouch(0).position.x,Input.GetTouch(0).position.y));
 		mausePosition.y = gameObject.transform.position.y;
 		GameObject clone = Instantiate (weapon, gameObject.transform.position,Quaternion.identity);
 		clone.transform.LookAt (mausePosition);
